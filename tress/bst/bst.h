@@ -4,20 +4,20 @@
 typedef enum Bool {
     TRUE,
     FALSE
-};
+} Bool;
 
-struct Node{
+typedef struct Node{
     struct Node *left;
     struct Node *right;
     int key;
-};
+} Node_bst;
 
-struct Node *insert(struct Node *t, int key);
+Node_bst *create_bst();
+Node_bst *insert(Node_bst *t, int key);
+Node_bst *insert_it(Node_bst *t, int key);
+Node_bst *search(Node_bst *t, int key);
 
-struct Node *search(int key);
-
-Bool remove(int key);
-
-void free_bst(struct Node *t);
+void free_bst(Node_bst *t);
+void print_bst(Node_bst *t);
 
 #endif
