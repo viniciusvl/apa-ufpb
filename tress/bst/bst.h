@@ -7,8 +7,7 @@ typedef enum Bool {
 } Bool;
 
 typedef struct Node{
-    struct Node *left;
-    struct Node *right;
+    struct Node *left, *right;
     int key;
 } Node_bst;
 
