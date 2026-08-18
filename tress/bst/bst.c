@@ -61,6 +61,11 @@ Node_bst *insert_it(Node_bst *t, int key){
     return t;
 }
 
+Bool remove(Node_bst *t, int key){
+    
+}
+
+
 Node_bst *search(Node_bst *t, int key){
     // Se não encontrar, então retorna NULL
     if (t == NULL){
@@ -78,4 +83,25 @@ Node_bst *search(Node_bst *t, int key){
     }
 
     return aux;
+}
+
+void free_bst(Node_bst *t){
+    if (t == NULL){
+        return;
+    }
+
+    free_bst(t->left);
+    free_bst(t->right);
+
+    free(t);
+}
+
+void print_bst_sort(Node_bst *t){
+    if (t == NULL){
+        return;
+    }
+
+    print_bst_sort(t->left);
+    printf("%d ", t->key);
+    print_bst_sort(t->right);
 }
