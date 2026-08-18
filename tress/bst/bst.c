@@ -61,10 +61,55 @@ Node_bst *insert_it(Node_bst *t, int key){
     return t;
 }
 
-Bool remove(Node_bst *t, int key){
+Node_bst *remove_bst(Node_bst *t, int key){
+    if (t == NULL){
+        return t;
+    }
     
-}
+    if (key == t->key){
+        if (t->right == NULL && t->left == NULL){
+            free(t);
+            return NULL;
+        }
 
+        if (t->right != NULL && t->left == NULL){
+            t->key = t->right->key;
+            
+            free(t->right);
+            return NULL;
+        }
+
+        if (t->right == NULL && t->left != NULL){
+            t->key = t->left->key;
+            
+            free(t->left);
+            return NULL;        
+        }
+
+        if (t->right != NULL && t->left != NULL){
+            Node_bst *current = t->right, *parent = t;
+
+            while (current->left != NULL){
+                parent = current;
+                current = current->left;
+            }
+
+            t->key = current->key;
+            t->right = remove_bst(t->right, current->key);
+
+            return t;
+        }
+    }
+
+
+    if (key > t->key){
+        t->right = remove_bst(t->right, key);
+    } else {
+        t->left = remove_bst(t->left, key);
+    }
+
+    return t;
+}
 
 Node_bst *search(Node_bst *t, int key){
     // Se não encontrar, então retorna NULL
