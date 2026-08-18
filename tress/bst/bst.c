@@ -10,6 +10,12 @@ Node_bst *create_bst(){
 Node_bst *insert(Node_bst *t, int key){
     if (t == NULL){
         Node_bst *new = (Node_bst *)malloc(sizeof(Node_bst));
+
+        if (new == NULL){
+            printf("Erro ao alocar espaço de memória para BST");
+            exit(1);
+        }
+
         new->key = key;
         new->left = new->right = NULL;
 
@@ -53,4 +59,23 @@ Node_bst *insert_it(Node_bst *t, int key){
     }
 
     return t;
+}
+
+Node_bst *search(Node_bst *t, int key){
+    // Se não encontrar, então retorna NULL
+    if (t == NULL){
+        return NULL;
+    }
+    Node_bst *aux = t;
+    if (t->key == key){
+        return t;
+    }
+
+    if (key > t->key){
+        aux = search(t->right, key);
+    } else {
+        aux = search(t->left, key);
+    }
+
+    return aux;
 }
